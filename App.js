@@ -9,9 +9,10 @@ export default function App() {
     email: "",
     comments: "",
     isFriendly: true,
-    employment: ""
+    employment: "",
+    favColor: "",
   });
-  console.log(FormData.employment);
+  console.log(FormData.favColor);
   function HandleChange(event) {  
     const {name, value, type, checked}=event.target;
     setFormData((prev) => {
@@ -21,9 +22,12 @@ export default function App() {
       };
     });
   }
-
+  function handleSubmit(event){
+    event.preventDefault();
+    console.log(FormData)
+  }
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="FirstName"
@@ -80,6 +84,21 @@ export default function App() {
         <label htmlFor="partial employed">partially employed</label>
 
       </fieldset>
+
+      <br />
+      <br />
+
+      <label htmlFor="color"> choose your favourite color</label>
+      <br />
+      <select name="favColor" id="color" value={FormData.favColor}  onChange={HandleChange}>
+        <option value="red">Red</option>
+        <option value="green">green</option>
+        <option value="Blue">Blue</option>
+        <option value="Uganda">Uganda</option>
+      </select>
+      <br />
+      <br />
+      <button type="submit">Submit</button>
     </form>
     
   );
